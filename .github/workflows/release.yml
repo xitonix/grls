@@ -1,5 +1,10 @@
 name: release
-
+env:
+  GO_VERSION: 1.24.2
+  MAINTAINER: Alex Golshani
+  URL: https://github.com/xitonix/trubka
+  DESCRIPTION: A CLI tool for Kafka
+  LICENSE: Apache License 2.0
 on:
   pull_request:
   push:
@@ -9,12 +14,18 @@ on:
 
 permissions:
   contents: write
-  # packages: write
-  # issues: write
-  # id-token: write
 
 jobs:
-  goreleaser:
+  prepare:
+    runs-on: ubuntu-latest
+    outputs:
+      repo_name: ${{ steps.extract.outputs.repo_name }}
+    steps:
+      - id: extract
+        run: |
+          repo="${GITHUB_REPOSITORY##*/}"
+          echo "repo_name=$repo" >> "$GITHUB_OUTPUT"
+  GoRelease:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -24,7 +35,7 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
-          go-version: 1.24.2
+          go-version: ${{ env.GO_VERSION }}
       # More assembly might be required: Docker logins, GPG, etc.
       # It all depends on your needs.
       - name: Run GoReleaser
@@ -38,21 +49,26 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   windows:
+    needs: prepare
     name: Windows-MSI
     runs-on: windows-latest
+    env:
+      REPO_NAME: ${{ needs.prepare.outputs.repo_name }}
     steps:
       - name: Set up Go
-        uses: actions/setup-go@v2
+        uses: actions/setup-go@v5
         with:
-          go-version: 1.24.2
+          go-version: ${{ env.GO_VERSION }}
       - name: Check out code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Download dependencies
         run: go mod download -x
         env:
           GO111MODULE: on
       - name: Package release
-        run: .\release.ps1 -version ($Env:GITHUB_REF).trimstart('refs/tags/v') -binary $Env:BINARY
+        run: .\release.ps1 -version ($Env:GITHUB_REF).trimstart('refs/tags/v') -binary $Env:REPO_NAME
         working-directory: .\release\windows
         id: package
         env:
