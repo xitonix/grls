@@ -5,6 +5,7 @@ env:
   URL: https://github.com/xitonix/trubka
   DESCRIPTION: A CLI tool for Kafka
   LICENSE: Apache License 2.0
+  APPLICATION: grls
 on:
   pull_request:
   push:
@@ -16,15 +17,6 @@ permissions:
   contents: write
 
 jobs:
-  prepare:
-    runs-on: ubuntu-latest
-    outputs:
-      repo_name: ${{ steps.extract.outputs.repo_name }}
-    steps:
-      - id: extract
-        run: |
-          repo="${GITHUB_REPOSITORY##*/}"
-          echo "repo_name=$repo" >> "$GITHUB_OUTPUT"
   GoRelease:
     runs-on: ubuntu-latest
     steps:
@@ -49,11 +41,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   windows:
-    needs: prepare
     name: Windows-MSI
     runs-on: windows-latest
-    env:
-      REPO_NAME: ${{ needs.prepare.outputs.repo_name }}
     steps:
       - name: Set up Go
         uses: actions/setup-go@v5
@@ -68,7 +57,7 @@ jobs:
         env:
           GO111MODULE: on
       - name: Package release
-        run: .\release.ps1 -version ($Env:GITHUB_REF).trimstart('refs/tags/v') -binary $Env:REPO_NAME
+        run: .\release.ps1
         working-directory: .\release\windows
         id: package
         env:
