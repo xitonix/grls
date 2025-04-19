@@ -46,6 +46,7 @@ changelog:
 universal_binaries:
   - replace: false
 nfpms:
+  - id: linux-package
   - file_name_template: "{{ .ConventionalFileName }}"
   - homepage: https://github.com/xitonix/{{ .ProjectName }}
   - license: Apache 2.0
@@ -54,7 +55,6 @@ nfpms:
     - apk
     - deb
     - rpm
-    - termux.deb
     - archlinux
 
 release:
