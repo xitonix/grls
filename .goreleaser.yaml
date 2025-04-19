@@ -48,7 +48,6 @@ universal_binaries:
 nfpms:
   - file_name_template: "{{ .ConventionalFileName }}"
   - homepage: https://github.com/xitonix/{{ .ProjectName }}
-  - maintainer: "Alex Golshani"
   - license: Apache 2.0
   # Formats to be generated.
   - formats:
