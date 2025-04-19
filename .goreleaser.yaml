@@ -43,6 +43,9 @@ changelog:
       - "^docs:"
       - "^test:"
 
+universal_binaries:
+  - replace: true
+
 release:
   footer: >-
 
