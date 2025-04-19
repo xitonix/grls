@@ -47,15 +47,15 @@ universal_binaries:
   - replace: false
 nfpms:
   - id: linux-package
-  - file_name_template: "{{ .ConventionalFileName }}"
-  - homepage: https://github.com/xitonix/{{ .ProjectName }}
-  - license: Apache 2.0
-  # Formats to be generated.
-  - formats:
-    - apk
-    - deb
-    - rpm
-    - archlinux
+    file_name_template: "{{ .ConventionalFileName }}"
+    homepage: https://github.com/xitonix/{{ .ProjectName }}
+    maintainer: Alex Golshani
+    license: Apache 2.0
+    formats:
+      - apk
+      - deb
+      - rpm
+      - archlinux
 
 release:
   footer: >-
