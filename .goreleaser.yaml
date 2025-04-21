@@ -44,7 +44,7 @@ changelog:
       - "^test:"
 
 universal_binaries:
-  - replace: false
+  - replace: true
 nfpms:
   - id: linux-package
     file_name_template: "{{ .ConventionalFileName }}"
