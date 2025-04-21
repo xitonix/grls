@@ -43,7 +43,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: echo
-        run: echo "HERE ${{ GoRelease.metadata }}, ${{ spets.GoRelease.outputs }}"
+        run: echo "HERE ${{ steps.GoRelease.outputs }}"
 #  windows:
 #    name: Windows-MSI
 #    runs-on: windows-latest
