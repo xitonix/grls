@@ -44,7 +44,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: echo
-        run: echo "HERE {{ .Env }}, {{ .ReleaseURL }}
+        run: echo "HERE {{ .Env }}, {{ .ReleaseURL }}"
 #  windows:
 #    name: Windows-MSI
 #    runs-on: windows-latest
