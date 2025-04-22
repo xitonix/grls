@@ -4,6 +4,7 @@ env:
   MAINTAINER: Alex Golshani
   DESCRIPTION: A CLI tool for Kafka
   LICENSE: Apache License 2.0
+  CHOCOLATEY_API_KEY: ${{ secrets.CHOCOLATEY_API_KEY }}
   APPLICATION: grls
 on:
   pull_request:

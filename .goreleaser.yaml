@@ -49,3 +49,14 @@ nfpms:
       - apk
       - deb
       - rpm
+
+chocolateys:
+  -
+    project_url: "{{ .GitURL }}"
+    owners: "{{ .Env.MAINTAINER }}"
+    authors: "{{ .Env.MAINTAINER }}"
+    require_license_acceptance: false
+    docs_url: "{{ .GitURL/blob/master/README.md }}"
+    description: "{{ .Env.DESCRIPTION }}"
+    api_key: "{{ .Env.CHOCOLATEY_API_KEY }}"
+    skip_publish: false
