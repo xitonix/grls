@@ -55,7 +55,8 @@ chocolateys:
     project_url: "https://github.com/xitonix/{{ .ProjectName }}"
     release_notes: "{{ .ReleaseURL }}"
     icon_url: "https://github.com/xitonix/trubka/blob/master/_media/logo-small.jpg"
-    owners: "Alex Golshani"
+    owners: "{{ .Env.MAINTAINER }}"
+    authors: "{{ .Env.MAINTAINER }}"
     require_license_acceptance: false
     description: "{{ .Env.DESCRIPTION }}"
     api_key: "{{ .Env.CHOCOLATEY_API_KEY }}"

@@ -17,7 +17,7 @@ permissions:
   contents: write
 
 jobs:
-  go-releaser:
+  release:
     runs-on: windows-latest
     steps:
       - name: Checkout
