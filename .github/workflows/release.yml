@@ -39,7 +39,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   windows:
-    name: Windows-MSI
+    name: windows-msi
     runs-on: windows-latest
     steps:
       - name: Set up Go
@@ -59,7 +59,7 @@ jobs:
         id: package
         env:
           GO111MODULE: on
-      - name: Upload windows artifacts
+      - name: Upload windows MSI
         uses: softprops/action-gh-release@v2
         if: github.ref_type == 'tag'
         env:

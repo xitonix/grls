@@ -7,7 +7,7 @@ If ( ! ( Test-Path Env:wix ) ) {
     exit 1
 }
 
-$msi="${Env:APPLICATION}_${version}_amd64.msi"
+$msi="${Env:APPLICATION}_windows_${version}_amd64.msi"
 $wixVersion="0.0.0"
 $wixVersionMatch=[regex]::Match($version, '^([0-9]+\.[0-9]+\.[0-9]+)')
 If ( $wixVersionMatch.success ) {
