@@ -49,4 +49,3 @@ nfpms:
       - apk
       - deb
       - rpm
-      - archlinux
