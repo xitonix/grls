@@ -44,4 +44,4 @@ If ( $LastExitCode -ne 0 ) {
     exit $LastExitCode
 }
 
-echo file=$msi >> $env:GITHUB_OUTPUT
+echo msi=$msi >> $env:GITHUB_OUTPUT
